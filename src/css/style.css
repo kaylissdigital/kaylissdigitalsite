@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================================================
+   1. VARIABLES & DESIGN SYSTEM KAYLISS DIGITAL
+   Palette extraite du logo : Bleu profond (sérieux), Cyan/Bleu ciel (dynamisme)
+   ========================================================================== */
+:root {
+  /* Couleurs de marque */
+  --kayliss-blue-dark: #003366;    /* Bleu navy très pro (base du K) */
+  --kayliss-blue-primary: #0066cc; /* Bleu principal (texte bas) */
+  --kayliss-cyan: #00bfff;         /* Cyan lumineux (haut du K) */
+  
+  /* Palette de gris & fonds */
+  --bg-main: #ffffff;
+  --bg-light: #f8fafc;             /* Slate 50 */
+  --bg-dark: #0f172a;              /* Slate 900, pour le footer */
+  
+  /* Textes */
+  --text-main: #334155;            /* Slate 700 */
+  --text-muted: #64748b;           /* Slate 500 */
+  --text-light: #ffffff;
+  
+  /* Alertes & Validation */
+  --success: #10b981;
+  --error: #ef4444;
+
+  /* Typographie */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Dimensions & Espacements */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+  
+  --container-max: 1200px;
+  --container-padding: 1.5rem;
+  
+  /* Transitions & Ombres */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-blue: 0 10px 25px -5px rgba(0, 102, 204, 0.4);
+}
+
+/* ==========================================================================
+   2. RESET & BASE
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHIE
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--kayliss-blue-dark);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+
+p { margin-bottom: 1rem; }
+
+a {
+  color: var(--kayliss-blue-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--kayliss-cyan);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--kayliss-blue-primary), var(--kayliss-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==========================================================================
+   4. LAYOUT & UTILITAIRES
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.section {
+  padding-block: 5rem;
+}
+
+.section-bg-light {
+  background-color: var(--bg-light);
+}
+
+/* Grilles communes */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+/* ==========================================================================
+   5. COMPOSANTS GLOBAUX
+   ========================================================================== */
+
+/* --- Boutons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--kayliss-blue-primary), var(--kayliss-cyan));
+  color: var(--text-light);
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px -5px rgba(0, 102, 204, 0.6);
+  color: var(--text-light);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--kayliss-blue-primary);
+  border-color: var(--kayliss-blue-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--kayliss-blue-primary);
+  color: var(--text-light);
+  box-shadow: 0 10px 20px -5px rgba(0, 102, 204, 0.4);
+  transform: translateY(-3px);
+}
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: rgba(0, 102, 204, 0.1);
+  color: var(--kayliss-blue-primary);
+  margin-bottom: 1rem;
+}
+
+/* --- Cartes --- */
+.card {
+  background-color: var(--bg-main);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0, 191, 255, 0.3);
+}
+
+/* ==========================================================================
+   6. NAVIGATION (Header/Footer)
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  z-index: 1000;
+  padding-block: 1rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-link img {
+  height: 55px;
+  width: auto;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--kayliss-blue-primary);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--kayliss-blue-dark);
+  cursor: pointer;
+}
+
+.footer {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  padding-block: 4rem 2rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-main);
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-normal);
+  }
+  
+  .nav-menu.is-active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   7. ANIMATIONS
+   ========================================================================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Devis | Kayliss Digital</title>
+  <link rel="stylesheet" href="/src/css/style.css">
+  <style>
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--kayliss-blue-dark); }
+    .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-family: inherit; font-size: 1rem; transition: border-color var(--transition-fast); }
+    .form-control:focus { outline: none; border-color: var(--kayliss-cyan); box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.1); }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="/" class="logo-link"><img src="/assets/logo.png" alt="Kayliss Digital Logo"></a>
+      <button class="mobile-toggle" aria-label="Menu Principal" aria-expanded="false">☰</button>
+      <nav class="nav-menu">
+        <a href="formations.html" class="nav-link">Nos Formations</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="contact.html" class="nav-link active">Qualiopi & Financement</a>
+        <a href="contact.html" class="btn btn-primary">Prendre RDV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem;">
+    <!-- En-tête de page -->
+    <section class="section section-bg-light" style="padding-block: 4rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div class="container" style="text-align: center; max-width: 800px;">
+            <h1 style="font-size: 2.5rem;">Construisons votre projet de formation <span class="text-gradient">IA sur-mesure</span></h1>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-top: 1rem;">
+                Besoin d'un devis pour votre OPCO ? D'échanger sur les besoins spécifiques de vos équipes ? Réservez un créneau ou envoyez-nous un message.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container contact-grid">
+            
+            <!-- Colonne 1 : Calendly -->
+            <div class="card" style="padding: 0; overflow: hidden; height: 100%;">
+                <div style="padding: 2rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                    <h2 style="margin-bottom: 0;">📅 Réserver un Audit de 30 min (Gratuit)</h2>
+                </div>
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/contact-kayliss/30min" style="min-width:320px;height:550px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <!-- Calendly inline widget end -->
+            </div>
+
+            <!-- Colonne 2 : Formulaire Formspree -->
+            <div>
+                <h2 style="margin-bottom: 1.5rem;">✉️ Demander un devis</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Vous préférez nous écrire ? Remplissez ce formulaire et nous vous répondrons sous 24h avec une proposition adaptée à votre contexte réglementaire (Qualiopi).
+                </p>
+                
+                <form action="https://api.web3forms.com/submit" method="POST" class="card" style="box-shadow: var(--shadow-md);">
+                    <!-- Web3Forms: les mails seront envoyés à contact@kayliss.fr -->
+                    <input type="hidden" name="access_key" value="2daba837-dac0-4c02-8ab8-fadbac36ac62">
+                    <input type="hidden" name="subject" value="Nouvelle demande de devis — Kayliss Digital">
+                    <input type="hidden" name="from_name" value="Site Kayliss Digital">
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nom et Prénom</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Jean Dupont" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Professionnel</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="jean@entreprise.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company" class="form-label">Entreprise</label>
+                        <input type="text" id="company" name="company" class="form-control" placeholder="Entreprise SAS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Besoin de formation</label>
+                        <select id="subject" name="subject" class="form-control" required style="cursor: pointer;">
+                            <option value="">Sélectionnez un sujet...</option>
+                            <option value="Devis Intra-entreprise (Sur-mesure)">Demande de devis Intra-entreprise (Sur-mesure)</option>
+                            <option value="Devis Inter-entreprises">Inscription Inter-entreprises</option>
+                            <option value="Question Financement OPCO">Question Financement / OPCO</option>
+                            <option value="Autre">Autre demande</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Votre message (Contexte, nombre d'apprenants, etc.)</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" placeholder="Décrivez votre besoin..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer la demande</button>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">Vos données sont protégées. <a href="legal.html" style="text-decoration: underline;">En savoir plus.</a></p>
+                </form>
+            </div>
+
+        </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="grid-3" style="gap: 4rem;">
+        <div>
+          <img src="/assets/logo.png" alt="Kayliss Digital" style="height: 40px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            L'excellence technologique au service de la transmission du savoir. Organisme de formation certifié Qualiopi, spécialisé en Intelligence Artificielle.
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="/assets/certificat-qualiopi.png" download="Certificat_Qualiopi_Kayliss_Digital.png" title="Télécharger le certificat Qualiopi" style="display: inline-block; background: white; padding: 0.5rem; border-radius: var(--radius-sm);">
+              <img src="/assets/qualiopi-logo.jpg" alt="Certification Qualiopi" style="height: 60px; object-fit: contain;">
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 1.5rem;">Nos Formations</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+            <li><a href="formation-1.html" style="color: var(--text-muted);">IA pour Décideurs</a></li>
+            <li><a href="formation-6.html" style="color: var(--text-muted);">Prompt Engineering</a></li>
+            <li><a href="formation-5.html" style="color: var(--text-muted);">Cybersécurité & IA</a></li>
+            <li><a href="formation-7.html" style="color: var(--text-muted);">Digitalisation</a></li>
+            <li><a href="formations.html" style="color: var(--kayliss-cyan); font-weight: 600;">Voir tout le catalogue →</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="color: white; margin-bottom: 1.5rem;">Contact</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+            <li style="color: var(--text-muted);">📍 229 rue Saint-Honoré, 75001 Paris</li>
+            <li style="color: var(--text-muted);">📞 <a href="tel:+33661556096" style="color: var(--text-muted);">+33 6 61 55 60 96</a></li>
+            <li style="color: var(--text-muted);">✉️ <a href="mailto:contact@kayliss.fr" style="color: var(--text-muted);">contact@kayliss.fr</a></li>
+            <li><a href="contact.html" class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Prendre RDV</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <p>&copy; 2025 Kayliss Digital. Tous droits réservés.</p>
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="legal.html" style="color: var(--text-muted);">Mentions Légales & RGPD</a>
+            <a href="cgu.html" style="color: var(--text-muted);">CGU</a>
+            <a href="cgv.html" style="color: var(--text-muted);">CGV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
