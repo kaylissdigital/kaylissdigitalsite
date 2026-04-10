@@ -23,6 +23,7 @@ export default defineConfig({
         f8: resolve(__dirname, 'formation-8.html'),
         f9: resolve(__dirname, 'formation-9.html'),
         f10: resolve(__dirname, 'formation-10.html'),
+        f11: resolve(__dirname, 'formation-11.html'),
       }
     }
   }
