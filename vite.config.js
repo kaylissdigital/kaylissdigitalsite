@@ -20,6 +20,7 @@ export default defineConfig({
         f5: resolve(__dirname, 'formation-5.html'),
         f6: resolve(__dirname, 'formation-6.html'),
         f7: resolve(__dirname, 'formation-7.html'),
+        f8: resolve(__dirname, 'formation-8.html'),
       }
     }
   }
